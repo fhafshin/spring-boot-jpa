@@ -30,6 +30,8 @@ public class SpringBootJpaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		postRepository.save(new Post("book"));
+		postRepository.save(new Post("book"));
+		postRepository.save(new Post("book"));
 
 		PostComment postComment=new PostComment();
 		postComment.setReview("hello");

@@ -25,6 +25,20 @@ public class PostComment {
     private Date comment_date;
 
 
+
+@ManyToOne
+@JoinColumn(name = "post_id",referencedColumnName = "id")
+private Post post;
+
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
     public long getId() {
         return id;
     }
@@ -66,5 +80,12 @@ public class PostComment {
         this.comment_date = comment_date;
     }
 
+    public PostComment() {
+    }
 
+    public PostComment(String review, CommentType comment_type, Date comment_date) {
+        this.review = review;
+        this.comment_type = comment_type;
+        this.comment_date = comment_date;
+    }
 }
