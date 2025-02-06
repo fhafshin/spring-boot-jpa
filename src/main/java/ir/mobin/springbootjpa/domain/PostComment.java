@@ -14,6 +14,16 @@ public class PostComment {
     long id;
     @Column(name = "review", length = 50, nullable = false)
     private String review;
+    @Transient
+    private Integer code;
+
+
+    @Enumerated(EnumType.ORDINAL)
+    private CommentType comment_type;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date comment_date;
+
 
     public long getId() {
         return id;
@@ -56,13 +66,5 @@ public class PostComment {
         this.comment_date = comment_date;
     }
 
-    @Transient
-    private Integer code ;
 
-
-    @Enumerated(EnumType.ORDINAL)
-private CommentType comment_type;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date comment_date;
 }
