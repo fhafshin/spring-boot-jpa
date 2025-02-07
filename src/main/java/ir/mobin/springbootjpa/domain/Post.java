@@ -2,11 +2,13 @@ package ir.mobin.springbootjpa.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="post")
+@Table(name = "post")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -15,14 +17,37 @@ public class Post {
     private String title;
 
 
-    @OneToOne(mappedBy = "post",cascade = CascadeType.ALL)
-   private PostDetails postDetails;
+    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private PostDetails postDetails;
 
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<PostComment> postComments = new HashSet<>();
 
-    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
-    private Set<PostComment> postComments=new HashSet<>();
 
+//    @ManyToMany(cascade = CascadeType.PERSIST)
+//    @JoinTable(name = "post_tag", joinColumns = @JoinColumn(name = "post_id"),
+//            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+//    List<Tag> tags = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "post",fetch = FetchType.LAZY)
+    List<PostTag> postTags=new ArrayList<>();
+
+    public List<PostTag> getPostTags() {
+        return postTags;
+    }
+
+    public void setPostTags(List<PostTag> postTags) {
+        this.postTags = postTags;
+    }
+//    public List<Tag> getTags() {
+//        return tags;
+//    }
+//
+//    public void setTags(List<Tag> tags) {
+//        this.tags = tags;
+//    }
 
     public Set<PostComment> getPostComments() {
         return postComments;

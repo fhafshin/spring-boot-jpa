@@ -28,7 +28,7 @@ public class OneToManyAnnotaionIntegrationTest {
     postComment2.setPost(post);
     postComments.add(postComment2);
 
-        post.setPostComments(postComments);
+      //  post.setPostComments(postComments);
 
         postRepository.save(post);
     }
@@ -43,7 +43,7 @@ public class OneToManyAnnotaionIntegrationTest {
 
     postComment.setPost(post);
 
-    post.addComment(postComment);
+    //post.addComment(postComment);
 
     postRepository.save(post);
     }

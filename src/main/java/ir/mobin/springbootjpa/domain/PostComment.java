@@ -26,7 +26,7 @@ public class PostComment {
 
 
 
-@ManyToOne
+@ManyToOne(fetch = FetchType.LAZY)
 @JoinColumn(name = "post_id",referencedColumnName = "id")
 private Post post;
 
